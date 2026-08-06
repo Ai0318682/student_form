@@ -1,8 +1,8 @@
 import streamlit as st
 name=st.text_input("enter your name:")
 fname=st.text_input("Enter your father name:")
-adr=st.text_area("Enter your Text:")
-age=st.number_input("Enter your age:")
+adr=st.text_area("Enter your Address:")
+age=st.number_input("Enter your age:", step=1)
 classdata=st.selectbox("Enter your class:",("matric","inter","bachelor","graduation","M.phil","PHD"))
 cnic=st.text_input("Enter your CNIC:")
 

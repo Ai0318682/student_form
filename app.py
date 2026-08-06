@@ -1,7 +1,7 @@
 import streamlit as st
 import gspread
 from google.oauth2.service_account import credentials
-from datatime import datatime
+from datetime import datetime
 #1. Google sheet connect
 scope=["https:\\www.googleapis.com\auth\spreadsheets","https:\\www.googleapis.com\auth\drive"]
 creds=credentials.form_service_account_file("student-form-app-504712-676cf390c482.json",scopes=scope)

@@ -3,7 +3,7 @@ name=st.text_input("enter your name:")
 fname=st.text_input("enter your father name:")
 religion=st.text_input("enter your religion:")
 adr=st.text_input("enter your address:")
-age=st.text_input("enter your age:",step=1)
+age=st.text_input("enter your age:",min_value=1,max_vlaue=100,step=1)
 classdata=st.selectbox("enter your class:",("matric","intermediate","Bachelor","Graduation","M.phil","PHD"))
 cnic=st.text_input("Enter your CNIC")
 

@@ -13,7 +13,7 @@ try:
     uploaded_file=st.file_uploader("upload service_account.json file",type="json")
     if uploaded_file is not None:
         creds=json.load(uploaded_file)
-   else:
+    else:
        st.stop()
     
     

@@ -43,7 +43,7 @@ st.title("student registration form")
 with st.form("student_form"):
       name=st.text_input("enter your name:")
      fname=st.text_input("enter your father name:")
-     religion=st.selectbox("enter your religion:",("Islam","Christian","Hindu","other"))
+   religion=st.selectbox("enter your religion:",("Islam","Christian","Hindu","other"))
      adr=st.text_input("enter your address:")
      age=st.text_input("enter your age:")
      classdata=st.selectbox("enter your class:",("matric","intermediate","Bachelor","Graduation","M.phil","PHD"))

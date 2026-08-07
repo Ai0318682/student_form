@@ -34,7 +34,7 @@ font-weight:700;
 
 #=====1. Google sheet sa connect
 scope=["http://spreadsheets.google.com/feeds","http://www.googleapis.com/auth/spreedsheets","http:\\www.googleapis.com\auth\drive"]
-creds= service_account_credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=scope)
+creds= service_account_Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=scope)
 client=gspread.authorize(creds)
 SHEET_ID="1n-bQoGGCjZt9ZH1t_uOHRHbwg81TNeLR8b6oZ2xou2w"
 sheet=client.open_by_key(SHEET_ID)

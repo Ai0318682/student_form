@@ -42,14 +42,14 @@ sheet=client.open(SHEET_NAME).sheet1
 st.title("student registration form")
 with st.form("student_form"):
       name=st.text_input("enter your name:")
-     fname=st.text_input("enter your father name:")
-   religion=st.selectbox("enter your religion:",("Islam","Christian","Hindu","other"))
-     adr=st.text_input("enter your address:")
-     age=st.text_input("enter your age:")
-     classdata=st.selectbox("enter your class:",("matric","intermediate","Bachelor","Graduation","M.phil","PHD"))
-     cnic=st.text_input("Enter your cnic:")
-     email=st.text_input("enter your email:")
-     phone=st.text_input("enter your phone number:")
+      fname=st.text_input("enter your father name:")
+     religion=st.selectbox("enter your religion:",("Islam","Christian","Hindu","other"))
+      adr=st.text_input("enter your address:")
+      age=st.text_input("enter your age:")
+      classdata=st.selectbox("enter your class:",("matric","intermediate","Bachelor","Graduation","M.phil","PHD"))
+      cnic=st.text_input("Enter your cnic:")
+      email=st.text_input("enter your email:")
+      phone=st.text_input("enter your phone number:")
 
      button=st.form_submit_button("Done")
 if button:

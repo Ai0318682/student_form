@@ -6,8 +6,10 @@ adr=st.text_input("enter your address:")
 age=st.text_input("enter your age:")
 classdata=st.selectbox("enter your class:",("matric","intermediate","Bachelor","Graduation","M.phil","PHD"))
 cnic=st.text_input("Enter your CNIC")
+email=st.text_input("enter your email:")
+phone=st.text_input("enter your phone number:")
 
 button=st.button("Done")
 if button:
     st.success("form submitted successfully")
-    st.markdown(f"name:{name},father name:{fname}, religion:{religion},address:{adr},age:{age},class:{classdata},cnic:{CNIC}")
+    st.markdown(f"name:{name},father name:{fname}, religion:{religion},address:{adr},age:{age},class:{classdata},cnic:{cnic},email:{email},phone:{phone}")

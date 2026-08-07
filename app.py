@@ -1,7 +1,7 @@
 import streamlit as st
 import gspread
 import pandas as pd 
-from google.oauth2.service_account import Credentials
+from google.oauth2.service_account 
 st.set_page_config(page_title="student form",page_icon="", layout="centered")
 #===color+design====
 st.markdown("""
@@ -33,11 +33,11 @@ font-weight:700;
 
 
 #=====1. Google sheet sa connect
-scope=["http://spreadsheets.google.com/feeds","http://www.googleapis.com/auth/drive"]
-creds=credentials.from_service_account-info(st.secrets["gcp_service_account"],scopes=scope)
+scope=["http://spreadsheets.google.com/feeds","http://www.googleapis.com/auth/spreedsheets","http:\\www.googleapis.com\auth\drive"]
+creds= service_account_credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=scope)
 client=gspread.authorize(creds)
-SPREEDSHEET_ID="1n-bQoGGCjZt9ZH1t_uOHRHbwg81TNeLR8b6oZ2xou2w"
-sheet=client.open_by_key(SPREEDSHEET_ID).sheet1
+SHEET_ID="1n-bQoGGCjZt9ZH1t_uOHRHbwg81TNeLR8b6oZ2xou2w"
+sheet=client.open_by_key(SHEET_ID)
 
 
 st.title("student registration form")

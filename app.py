@@ -34,10 +34,11 @@ font-weight:700;
 
 #=====1. Google sheet sa connect
 scope=["http://spreadsheets.google.com/feeds","http://www.googleapis.com/auth/drive"]
-creds=credentials.from_service-account-info(st.secrets["gcp_service_account"],scopes=scope)
+creds=credentials.from_service_account-info(st.secrets["gcp_service_account"],scopes=scope)
 client=gspread.authorize(creds)
-SHEET_NAME="student_data"
-sheet=client.open(SHEET_NAME).sheet1
+SPREEDSHEET_ID="1n-bQoGGCjZt9ZH1t_uOHRHbwg81TNeLR8b6oZ2xou2w"
+sheet=client.open_by_key(SPREEDSHEET_ID).sheet1
+
 
 st.title("student registration form")
 with st.form("student_form"):

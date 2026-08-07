@@ -10,9 +10,13 @@ st.set_page_config(page_title="Student Registration Form")
 scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 
 try:
-    creds = Credentials.from_service_account_info(
-        json.loads(st.secrets["gcp_service_account_json"]), scopes=scope
-    )
+    uploaded_file=st.file_uploader("upload service_account.json file",type="json")
+    if uploaded_file is not None:
+        creds=json.load(uploaded_file)
+   else:
+       st.stop()
+    
+    
     gc = gspread.authorize(creds)
     sh = gc.open("Student form") # Tumhari sheet ka naam
     worksheet = sh.sheet1

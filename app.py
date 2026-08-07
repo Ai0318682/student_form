@@ -1,7 +1,7 @@
 import streamlit as st
 import gspread
 import pandas as pd 
-from google.oauth2.service_account 
+from google.oauth2 import service_account 
 st.set_page_config(page_title="student form",page_icon="", layout="centered")
 #===color+design====
 st.markdown("""

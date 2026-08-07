@@ -10,7 +10,7 @@ st.set_page_config(page_title="Student Registration Form", page_icon="📝")
 scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 import json
 creds = Credentials.from_service_account_info(
- json.loads(st.secrets)["gcp_service_account_json"], scopes=scope
+ json.loads(st.secrets)["gcp_service_account_json"]), scopes=scope
 )
 client = gspread.authorize(creds)
 

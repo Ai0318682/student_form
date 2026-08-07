@@ -33,12 +33,18 @@ font-weight:700;
 
 
 #=====1. Google sheet sa connect
-scope=["http://spreadsheets.google.com/feeds","http://www.googleapis.com/auth/spreedsheets","http:\\www.googleapis.com\auth\drive"]
-creds= service_account_Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=scope)
-client=gspread.authorize(creds)
-SHEET_ID="1n-bQoGGCjZt9ZH1t_uOHRHbwg81TNeLR8b6oZ2xou2w"
-sheet=client.open_by_key(SHEET_ID)
+scope = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+]
 
+creds = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"], scopes=scope
+)
+
+client = gspread.authorize(creds)
+SHEET_ID = "1n-bQoGGCjZt9ZH1t_uOHRHbw8I1NeLR8b6oZ2xou2w"
+sheet = client.open_by_key(SHEET_ID)
 
 st.title("student registration form")
 with st.form("student_form"):

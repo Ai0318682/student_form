@@ -1,78 +1,52 @@
 import streamlit as st
 import gspread
-import pandas as pd 
-from google.oauth2 import service_account 
-st.set_page_config(page_title="student form",page_icon="", layout="centered")
-#===color+design====
-st.markdown("""
-<style>
-/*pora page ka background*/
-.stApp{
-background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
-}
-/*form ka white box*/
-[data-testid="stForm"]{
-background-color:white;
-padding:30px;
-border-radius: 20px;
-box-shadow:0 10px 30px rgba(0,0,0.03);
-}
-/*Title*/
-h1{
-color:white;
-text-align:center;
-font-weight:700;
-}
-/*Input box*/
-.stTextInput>div>div>input,.stSelectbox>div>div>select {
-     border-radius:20px;
-     border:2px solid #185a9d;
-     }
-     </style>
-     """,unsafe_allow_html=True)
+from google.oauth2.service_account import Credentials
+from datetime import datetime
 
+# Page setup
+st.set_page_config(page_title="Student Registration Form", page_icon="📝")
 
-#=====1. Google sheet sa connect
-scope = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive"
-]
-import json
-creds = service_account.Credentials.from_service_account_info(
-    json.loads(st.secrets["gcp_service_account_json"]), scopes=scope
+# Google Sheets connect
+scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+
+creds = Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"], scopes=scope
 )
-
 client = gspread.authorize(creds)
-SHEET_ID = "1n-bQoGGCjZt9ZH1t_uOHRHbw8I1NeLR8b6oZ2xou2w"
-sheet = client.open_by_key(SHEET_ID)
 
-st.title("student registration form")
+# Apni Google Sheet ka naam yahan likho
+SHEET_NAME = "StudentData" 
+
+try:
+    sheet = client.open(SHEET_NAME).sheet1
+except:
+    st.error(f"'{SHEET_NAME}' naam ki sheet nahi mili. Pehle Google Drive me bana lo.")
+    st.stop()
+
+
+st.title("📝 Student Registration Form")
+st.write("Neeche apni details fill karein")
+
 with st.form("student_form"):
-     name=st.text_input("enter your name:")
-     fname=st.text_input("enter your father name:")
-     adr=st.text_input("enter your address:")
-     religion=st.selectbox("enter your religion:",("Islam","Christian","Hindu","other"))
-     age=st.text_input("enter your age:")
-     classdata=st.selectbox("enter your class:",("matric","intermediate","Bachelor","Graduation","M.phil","PHD"))
-     cnic=st.text_input("Enter your cnic:")
-     email=st.text_input("enter your email:")
-     phone=st.text_input("enter your phone number:")
+    name = st.text_input("Full Name")
+    roll_no = st.text_input("Roll Number")
+    email = st.text_input("Email")
+    phone = st.text_input("Phone Number")
+    course = st.selectbox("Course", ["BSSE", "BSCS", "BSIT", "Other"])
+    
+    submitted = st.form_submit_button("Submit")
 
-button=st.form_submit_button("Done")
-if button:
-     st.success("form submitted successfully")
-     st.markdown("### student detail")
-     st.markdown(f"name:{name}")
-     st.markdown(f"father name:{fname}")   
-     st.markdown(f"religion:{religion}")   
-     st.markdown(f"age:{age}")
-     st.markdown(f"class:{classdata}") 
-     st.markdown(f"cnic:{cnic}")
-     st.markdown(f"email:{email}")
-     st.markdown(f"phone:{phone}") 
+    if submitted:
+        if name and roll_no and email:
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            new_row = [timestamp, name, roll_no, email, phone, course]
+            sheet.append_row(new_row)
+            st.success(f"Shukriya {name}! Aapka data save ho gaya ✅")
+            st.balloons()
+        else:
+            st.warning("Name, Roll No aur Email zaroori hain")
 
-     st.write("### ### All saved entries")
-     data=sheet.get_all_records()
-     df=pd.DataFrame(data)
-     st.dataframe(df,use_container_width=True)
-     st.write(f"**Total Entries:** {len(df)}")
+
+st.write("---")
+st.caption("Made with Streamlit")
+

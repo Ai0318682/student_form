@@ -64,8 +64,8 @@ if button:
      st.markdown(f"email:{email}")
      st.markdown(f"phone:{phone}") 
 
-    st.write("### ### All saved entries")
-    data=sheet.get_all_records()
-    df=pd.DataFrame(data)
-    st.dataframe(df,use_container_width=True)
-    st.write(f"**Total Entries:** {len(df)"}
+     st.write("### ### All saved entries")
+     data=sheet.get_all_records()
+     df=pd.DataFrame(data)
+     st.dataframe(df,use_container_width=True)
+     st.write(f"**Total Entries:** {len(df)"}

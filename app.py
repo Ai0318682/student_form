@@ -12,19 +12,18 @@ scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis
 try:
     uploaded_file=st.file_uploader("upload service_account.json file",type="json")
     if uploaded_file is not None:
-        creds=json.load(uploaded_file)
+        creds_dict=json.load(uploaded_file)
+        creds=Credentials.from_service_account_info(creds_dict,scopes=scope)
+        gc=gspread.authorize(creds)
+        sh=gc.open("student form data")
+        worksheet=sh.sheet1
+        connection_ok=True
+        st.success("google sheet sa connect ho gaya")
     else:
        st.stop()
-    
-    
-    gc = gspread.authorize(creds)
-    sh = gc.open("Student form") # Tumhari sheet ka naam
-    worksheet = sh.sheet1
-    connection_ok = True
 except Exception as e:
     st.error(f"Google Sheet se connect nahi ho pa raha: {e}")
     connection_ok = False
-
 st.title("📝 Student Registration Form")
 
 if connection_ok:
@@ -43,7 +42,7 @@ if connection_ok:
                 st.error("Name aur Roll No zaroori hain *")
             else:
                 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                worksheet.append_row([timestamp, name, roll, cnic, religion, address, email])
+                worksheet.append_row([name, roll, cnic, religion, address, email])
                 st.success("✅ Data Saved Successfully!")
                 st.balloons()
 

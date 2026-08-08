@@ -48,7 +48,7 @@ with st.form("student_form", clear_on_submit=True):
             st.info("Download your file below. We don't save your data.")
 
             st.download_button(
-                label="📥 Download Your Data as CSV",
+                label="Download Your Data as CSV",
                 data=csv,
                 file_name=f'{name}_{roll}.csv',
                 mime='text/csv'
